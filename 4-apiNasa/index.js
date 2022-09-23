@@ -31,7 +31,13 @@ async function apiNasaFunc(url){
     });
 }
 
-apiNasaFunc(apiNasa);
+//apiNasaFunc(apiNasa);
 
+async function MarsPhotos(key, day, camera, robot){
+    var urlMars = `https://api.nasa.gov/mars-photos/api/v1/rovers/${robot}/photos?sol=${day}&camera=${camera}&api_key=${key}`;
+    const resultURL = await fetch(urlMars);
+    var JSONmars = await resultURL.json();
+    console.log(JSONmars)
+}
 
-
+MarsPhotos(key, "1000", "FHAZ", "curiosity")
