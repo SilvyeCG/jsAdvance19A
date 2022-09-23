@@ -49,9 +49,15 @@ async function marsPhotos(key, day, camera, robot){
 }
 
 
+/**
+ * BringPhoto() is an async function that calls the marsPhotos() function, and then sets the innerHTML
+ * of the containerPhoto div to an image tag with the src and alt attributes set to the im and idim
+ * variables, respectively.
+ */
 async function bringPhoto(){
     var containerPhoto = document.getElementById('containerPhoto');
     await marsPhotos(key, "1000", "FHAZ", "curiosity");
+    
     containerPhoto.innerHTML = `
         <img src=${im} alt= ${idim}>
     `
