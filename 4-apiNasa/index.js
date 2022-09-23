@@ -56,8 +56,7 @@ async function marsPhotos(key, day, camera, robot){
  */
 async function bringPhoto(){
     var containerPhoto = document.getElementById('containerPhoto');
-    await marsPhotos(key, "1000", "FHAZ", "curiosity");
-    
+    await marsPhotos(key, "1000", "FHAZ", "curiosity");  
     containerPhoto.innerHTML = `
         <img src=${im} alt= ${idim}>
     `
