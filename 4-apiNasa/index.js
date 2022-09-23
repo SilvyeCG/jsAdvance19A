@@ -1,6 +1,6 @@
 console.log('API NASA');
 
-import fetch from "node-fetch";
+//import fetch from "node-fetch";
 const key = "GngUP2FdQXtMNroPwXe8vslDdnvFqgdMU1vEG3E3";
 
 var apiNasa = `https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-11&end_date=2015-09-08&api_key=${key}`;
@@ -32,12 +32,28 @@ async function apiNasaFunc(url){
 }
 
 //apiNasaFunc(apiNasa);
+let im
+let idim
 
-async function MarsPhotos(key, day, camera, robot){
+async function marsPhotos(key, day, camera, robot){
     var urlMars = `https://api.nasa.gov/mars-photos/api/v1/rovers/${robot}/photos?sol=${day}&camera=${camera}&api_key=${key}`;
     const resultURL = await fetch(urlMars);
     var JSONmars = await resultURL.json();
     console.log(JSONmars)
+    var photosList = JSONmars.photos
+    photosList.forEach((el, ind, arr) =>{
+        im = el.img_src;
+        idim = el.id
+        //console.log([el.img_src, el.id])
+    })
 }
 
-MarsPhotos(key, "1000", "FHAZ", "curiosity")
+
+async function bringPhoto(){
+    var containerPhoto = document.getElementById('containerPhoto');
+    await marsPhotos(key, "1000", "FHAZ", "curiosity");
+    containerPhoto.innerHTML = `
+        <img src=${im} alt= ${idim}>
+    `
+}
+
