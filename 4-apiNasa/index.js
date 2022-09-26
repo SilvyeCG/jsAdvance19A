@@ -2,9 +2,9 @@ console.log('API NASA');
 
 //import fetch from "node-fetch";
 const key = "GngUP2FdQXtMNroPwXe8vslDdnvFqgdMU1vEG3E3";
-
 var apiNasa = `https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-11&end_date=2015-09-08&api_key=${key}`;
 
+var containerPhoto = document.getElementById('containerPhoto');
 /**
  * It takes the JSON object returned by the API and loops through it to find the value of the key
  * "is_potentially_hazardous_asteroid" for each day.
@@ -35,6 +35,16 @@ async function apiNasaFunc(url){
 let im
 let idim
 
+/**
+ * It takes a key, day, camera, and robot as parameters and returns a list of photos from the Mars
+ * Rover API.
+ * @param key - your API key
+ * @param day - the day of the mission
+ * @param camera - FHAZ, RHAZ, MAST, CHEMCAM, MAHLI, MARDI, NAVCAM, PANCAM, MINITES
+ * @param robot - Curiosity, Opportunity, Spirit
+ */
+
+
 async function marsPhotos(key, day, camera, robot){
     var urlMars = `https://api.nasa.gov/mars-photos/api/v1/rovers/${robot}/photos?sol=${day}&camera=${camera}&api_key=${key}`;
     const resultURL = await fetch(urlMars);
@@ -54,8 +64,10 @@ async function marsPhotos(key, day, camera, robot){
  * of the containerPhoto div to an image tag with the src and alt attributes set to the im and idim
  * variables, respectively.
  */
+
+
 async function bringPhoto(){
-    var containerPhoto = document.getElementById('containerPhoto');
+    
     await marsPhotos(key, "1000", "FHAZ", "curiosity");  
     containerPhoto.innerHTML = `
         <img src=${im} alt= ${idim}>
