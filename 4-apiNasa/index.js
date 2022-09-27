@@ -67,8 +67,15 @@ async function marsPhotos(key, day, camera, robot){
 
 
 async function bringPhoto(){
-    
-    await marsPhotos(key, "1000", "FHAZ", "curiosity");  
+    let robot = document.getElementById('robot');
+    let sensor = document.getElementById('sensor');
+    let solarDay = document.getElementById('solarDay');
+    let robotv = robot.value;
+    let sensorV = sensor.value;
+    let solarDayV = solarDay.value;
+    console.log(robotv, sensorV, solarDayV)
+
+    await marsPhotos(key, toString(solarDayV), sensorV, robotv);  
     containerPhoto.innerHTML = `
         <img src=${im} alt= ${idim}>
     `
