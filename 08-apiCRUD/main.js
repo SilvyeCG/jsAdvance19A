@@ -2,15 +2,15 @@
 
 const goodReadsCrud = require('./crudAuthors')
 
-//list authors
+/* Calling the function getAuthors() from the file crudAuthors.js */
+goodReadsCrud.getAuthors();
 
-//goodReadsCrud.getAuthors();
+/* Calling the function getAuthorById() from the file crudAuthors.js */
+goodReadsCrud.getAuthorById(14890);
 
-//get author by ID
-//goodReadsCrud.getAuthorById(14890);
+//Create author, a JSON must be the param
 
-// Create author, a JSON must be the param
-
+/* Creating a new author with the information provided in the JSON. */
 const jsonSend = {
 	name: "Jennette",
 	last_name: "McCurdy",
@@ -20,5 +20,17 @@ const jsonSend = {
 	age: 64,
 	is_alive: true
 }
-//IDs 14899 => Maria, 14890 => Silvia ,14901 => Jennette
 goodReadsCrud.createAuthor(jsonSend)
+
+/* Updating the author with the id {14901}. */
+const updateAuthor = {
+    nacionalidad: "USA",
+	biography: "I'm glad my mom die",
+	gender: "F",
+	age: 30,
+	is_alive: true
+}
+goodReadsCrud.patchAuthor(14901, updateAuthor)
+
+/* Deleting the author with the id {14890}. */
+goodReadsCrud.deleteAuthor(14890)
