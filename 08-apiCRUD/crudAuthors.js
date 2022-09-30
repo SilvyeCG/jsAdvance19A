@@ -15,14 +15,30 @@ const getAuthors = () =>{
     request.get(URI, (error, response, body) =>{
         //validate petition
         if(response.statusCode === 200){
-            const authors = JSON.parse(body)
-            console.table(authors)
+            const authors = JSON.parse(body);
+            console.log(authors);
+        }else{
+            console.log(response.statusCode, response.statusMessage);
+        }
+    });
+}
+
+//GET AUTHOR BY ID
+
+const getAuthorById  = (idAuthor) => {
+    request.get(URI+idAuthor+'/',(error, response, body) =>{
+        //validate petition
+        if(response.statusCode === 200){
+            const author = JSON.parse(body);
+            console.table(author);
         }else{
             console.log(response.statusCode, response.statusMessage)
         }
-    })
+    });
 }
 
+
 module.exports = {
-    getAuthors
+    getAuthors,
+    getAuthorById
 }
